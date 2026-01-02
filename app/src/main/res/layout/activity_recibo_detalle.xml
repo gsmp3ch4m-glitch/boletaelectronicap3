@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.ReciboP3.AppBar">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            style="@style/Widget.ReciboP3.Toolbar"
+            app:title="@string/detalle_recibo_titulo"
+            app:navigationIcon="@android:drawable/ic_menu_close_clear_cancel" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.ReciboP3.Card"
+                android:layout_marginBottom="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="8dp">
+
+                        <TextView
+                            android:id="@+id/tvNumeroRecibo"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="REC-000001"
+                            android:textAppearance="@style/TextAppearance.ReciboP3.Headline2" />
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chipEstado"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/estado_emitido"
+                            style="@style/Widget.ReciboP3.Chip" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvFecha"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="01/01/2026 - 10:30 AM"
+                        android:textAppearance="@style/TextAppearance.ReciboP3.Caption" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/cliente_titulo"
+                android:textAppearance="@style/TextAppearance.ReciboP3.Headline2"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/tvClienteNombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nombre: Juan Pérez"
+                android:textAppearance="@style/TextAppearance.ReciboP3.Body"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:id="@+id/tvClienteDocumento"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="DNI/RUC: 12345678"
+                android:textAppearance="@style/TextAppearance.ReciboP3.Body"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:id="@+id/tvClienteTelefono"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Teléfono: 987654321"
+                android:textAppearance="@style/TextAppearance.ReciboP3.Body"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:id="@+id/tvClienteDireccion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Dirección: Lima, Perú"
+                android:textAppearance="@style/TextAppearance.ReciboP3.Body"
+                android:layout_marginBottom="16dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/detalle_titulo"
+                android:textAppearance="@style/TextAppearance.ReciboP3.Headline2"
+                android:layout_marginBottom="8dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewDetalles"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:nestedScrollingEnabled="false" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/divider"
+                android:layout_marginVertical="8dp" />
+
+            <TextView
+                android:id="@+id/tvMontoTotal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Monto Total: S/ 150.00"
+                android:textAppearance="@style/TextAppearance.ReciboP3.Body"
+                android:textStyle="bold"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:id="@+id/tvPagoTipo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tipo de Pago: TOTAL"
+                android:textAppearance="@style/TextAppearance.ReciboP3.Body"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:id="@+id/tvMontoPagado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Monto Pagado: S/ 150.00"
+                android:textAppearance="@style/TextAppearance.ReciboP3.Body"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:id="@+id/tvSaldoPendiente"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Saldo Pendiente: S/ 0.00"
+                android:textAppearance="@style/TextAppearance.ReciboP3.Body"
+                android:textColor="@color/error"
+                android:layout_marginBottom="24dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnVerPdf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ver_pdf"
+                android:layout_marginBottom="8dp"
+                style="@style/Widget.ReciboP3.Button" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnCompartirPdf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/compartir_pdf"
+                android:layout_marginBottom="8dp"
+                style="@style/Widget.ReciboP3.Button.Outlined" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnAnular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/anular_recibo"
+                android:backgroundTint="@color/error"
+                style="@style/Widget.ReciboP3.Button" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

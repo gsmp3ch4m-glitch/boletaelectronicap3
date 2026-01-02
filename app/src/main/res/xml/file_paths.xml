@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <files-path name="recibos_pdf" path="ReciboP3/" />
+    <files-path name="firmas" path="Firmas/" />
+    <external-files-path name="external_files" path="." />
+</paths>

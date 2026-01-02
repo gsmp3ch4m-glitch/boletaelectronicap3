@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary Brand Colors -->
+    <color name="primary">#1E88E5</color>
+    <color name="primary_dark">#1565C0</color>
+    <color name="primary_light">#42A5F5</color>
+    
+    <color name="secondary">#26A69A</color>
+    <color name="secondary_dark">#00897B</color>
+    <color name="secondary_light">#4DB6AC</color>
+    
+    <color name="accent">#66BB6A</color>
+    
+    <!-- Background Colors -->
+    <color name="background">#FFFFFF</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="surface_variant">#F5F5F5</color>
+    
+    <!-- Text Colors -->
+    <color name="on_primary">#FFFFFF</color>
+    <color name="on_secondary">#FFFFFF</color>
+    <color name="on_background">#212121</color>
+    <color name="on_surface">#212121</color>
+    <color name="text_primary">#212121</color>
+    <color name="text_secondary">#757575</color>
+    <color name="text_hint">#9E9E9E</color>
+    
+    <!-- Status Colors -->
+    <color name="success">#4CAF50</color>
+    <color name="warning">#FF9800</color>
+    <color name="error">#F44336</color>
+    <color name="info">#2196F3</color>
+    
+    <!-- Estado Recibo -->
+    <color name="estado_emitido">#4CAF50</color>
+    <color name="estado_anulado">#F44336</color>
+    
+    <!-- Dividers and Borders -->
+    <color name="divider">#E0E0E0</color>
+    <color name="border">#BDBDBD</color>
+    
+    <!-- Overlay -->
+    <color name="overlay">#80000000</color>
+    
+    <!-- Common -->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="transparent">#00000000</color>
+</resources>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary Brand Colors (Dark Mode) -->
+    <color name="primary">#42A5F5</color>
+    <color name="primary_dark">#1E88E5</color>
+    <color name="primary_light">#64B5F6</color>
+    
+    <color name="secondary">#4DB6AC</color>
+    <color name="secondary_dark">#26A69A</color>
+    <color name="secondary_light">#80CBC4</color>
+    
+    <color name="accent">#81C784</color>
+    
+    <!-- Background Colors (Dark Mode) -->
+    <color name="background">#121212</color>
+    <color name="surface">#1E1E1E</color>
+    <color name="surface_variant">#2C2C2C</color>
+    
+    <!-- Text Colors (Dark Mode) - Light text for dark backgrounds -->
+    <color name="on_primary">#000000</color>
+    <color name="on_secondary">#000000</color>
+    <color name="on_background">#E0E0E0</color>
+    <color name="on_surface">#E0E0E0</color>
+    <color name="text_primary">#E0E0E0</color>
+    <color name="text_secondary">#B0B0B0</color>
+    <color name="text_hint">#808080</color>
+    
+    <!-- Status Colors (Dark Mode) -->
+    <color name="success">#66BB6A</color>
+    <color name="warning">#FFA726</color>
+    <color name="error">#EF5350</color>
+    <color name="info">#42A5F5</color>
+    
+    <!-- Estado Recibo (Dark Mode) -->
+    <color name="estado_emitido">#66BB6A</color>
+    <color name="estado_anulado">#EF5350</color>
+    
+    <!-- Dividers and Borders (Dark Mode) -->
+    <color name="divider">#3A3A3A</color>
+    <color name="border">#4A4A4A</color>
+    
+    <!-- Overlay (Dark Mode) -->
+    <color name="overlay">#80000000</color>
+    
+    <!-- Common (same in both modes) -->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="transparent">#00000000</color>
+</resources>

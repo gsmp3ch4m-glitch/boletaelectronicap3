@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="8px"
+    android:background="#FFFFFF">
+
+    <TextView
+        android:id="@+id/pdfItemDescripcion"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:text="Producto"
+        android:textSize="9px"
+        android:textColor="#212121" />
+
+    <TextView
+        android:id="@+id/pdfItemCantidad"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="1"
+        android:textSize="9px"
+        android:textColor="#212121"
+        android:gravity="center" />
+
+    <TextView
+        android:id="@+id/pdfItemPrecioUnit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.5"
+        android:text="S/ 50.00"
+        android:textSize="9px"
+        android:textColor="#212121"
+        android:gravity="end" />
+
+    <TextView
+        android:id="@+id/pdfItemTotal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.5"
+        android:text="S/ 50.00"
+        android:textSize="9px"
+        android:textColor="#212121"
+        android:gravity="end" />
+
+</LinearLayout>

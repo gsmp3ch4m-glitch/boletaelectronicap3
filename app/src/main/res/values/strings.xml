@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Recibo P3</string>
+    
+    <!-- Main Menu -->
+    <string name="bienvenido">Bienvenido a</string>
+    <string name="menu_nuevo_recibo">Nuevo Recibo</string>
+    <string name="menu_recibos_realizados">Recibos Realizados</string>
+    <string name="menu_buscar_fecha">Buscar por Fecha</string>
+    <string name="menu_ajustes">Ajustes de Empresa</string>
+    
+    <!-- Empresa -->
+    <string name="empresa_titulo">Datos de la Empresa</string>
+    <string name="empresa_nombre">Nombre de la Empresa</string>
+    <string name="empresa_ruc">RUC</string>
+    <string name="empresa_direccion">Dirección</string>
+    <string name="empresa_telefono">Teléfono</string>
+    <string name="empresa_redes">Redes Sociales (opcional)</string>
+    <string name="empresa_firma">Firma</string>
+    <string name="empresa_firmar_ahora">Firmar Ahora</string>
+    <string name="empresa_cargar_firma">Cargar Firma</string>
+    <string name="empresa_guardar">Guardar Empresa</string>
+    <string name="empresa_sin_datos">No hay empresa registrada. Por favor, registre los datos de su empresa.</string>
+    
+    <!-- Firma -->
+    <string name="firma_titulo">Firma Digital</string>
+    <string name="firma_instruccion">Firme con su dedo en el espacio blanco</string>
+    <string name="firma_limpiar">Limpiar</string>
+    <string name="firma_guardar">Guardar Firma</string>
+    <string name="firma_vacia">Por favor, realice su firma antes de guardar</string>
+    
+    <!-- Nuevo Recibo -->
+    <string name="nuevo_recibo_titulo">Nuevo Recibo</string>
+    <string name="recibo_numero">Número de Recibo:</string>
+    <string name="recibo_fecha">Fecha y Hora:</string>
+    <string name="recibo_cambiar_fecha">Cambiar Fecha</string>
+    <string name="cliente_titulo">Datos del Cliente</string>
+    <string name="cliente_nombre">Nombre o Razón Social</string>
+    <string name="cliente_documento">RUC o DNI</string>
+    <string name="cliente_telefono">Teléfono</string>
+    <string name="cliente_direccion">Dirección</string>
+    <string name="detalle_titulo">Detalle de Productos/Servicios</string>
+    <string name="detalle_agregar">Agregar Ítem</string>
+    <string name="detalle_vacio">No hay ítems agregados</string>
+    <string name="pago_titulo">Información de Pago</string>
+    <string name="pago_total">Pago Total</string>
+    <string name="pago_parcial">Pago Parcial</string>
+    <string name="monto_total">Monto Total:</string>
+    <string name="monto_pagado">Monto Pagado:</string>
+    <string name="saldo_pendiente">Saldo Pendiente:</string>
+    <string name="generar_pdf">Guardar y Generar PDF</string>
+    
+    <!-- Detalle Item Dialog -->
+    <string name="item_titulo">Agregar Producto/Servicio</string>
+    <string name="item_descripcion">Descripción</string>
+    <string name="item_cantidad">Cantidad</string>
+    <string name="item_precio_unitario">Precio Unitario</string>
+    <string name="item_total">Total:</string>
+    <string name="item_agregar">Agregar</string>
+    <string name="item_cancelar">Cancelar</string>
+    <string name="item_editar">Editar Ítem</string>
+    <string name="item_actualizar">Actualizar</string>
+    
+    <!-- Recibos List -->
+    <string name="recibos_titulo">Recibos Realizados</string>
+    <string name="recibos_vacio">No hay recibos registrados</string>
+    <string name="estado_emitido">EMITIDO</string>
+    <string name="estado_anulado">ANULADO</string>
+    
+    <!-- Recibo Detalle -->
+    <string name="detalle_recibo_titulo">Detalle del Recibo</string>
+    <string name="ver_pdf">Ver PDF</string>
+    <string name="compartir_pdf">Compartir PDF</string>
+    <string name="anular_recibo">Anular Recibo</string>
+    <string name="recibo_anulado_mensaje">Este recibo ha sido anulado</string>
+    <string name="confirmar_anular">¿Está seguro de anular este recibo?</string>
+    
+    <!-- Buscar Fecha -->
+    <string name="buscar_titulo">Buscar por Fecha</string>
+    <string name="fecha_desde">Desde:</string>
+    <string name="fecha_hasta">Hasta:</string>
+    <string name="buscar">Buscar</string>
+    <string name="seleccionar_fecha">Seleccionar Fecha</string>
+    
+    <!-- PDF -->
+    <string name="pdf_recibo">RECIBO DE PAGO</string>
+    <string name="pdf_empresa">DATOS DE LA EMPRESA</string>
+    <string name="pdf_cliente">DATOS DEL CLIENTE</string>
+    <string name="pdf_detalle">DETALLE</string>
+    <string name="pdf_descripcion">Descripción</string>
+    <string name="pdf_cantidad">Cant.</string>
+    <string name="pdf_precio_unit">P. Unit.</string>
+    <string name="pdf_total">Total</string>
+    <string name="pdf_firma">Firma y Sello</string>
+    
+    <!-- General -->
+    <string name="si">Sí</string>
+    <string name="no">No</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="guardar">Guardar</string>
+    <string name="editar">Editar</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="volver">Volver</string>
+    <string name="error">Error</string>
+    <string name="exito">Éxito</string>
+    <string name="cargando">Cargando...</string>
+    
+    <!-- Mensajes -->
+    <string name="empresa_guardada">Empresa guardada correctamente</string>
+    <string name="recibo_generado">Recibo generado correctamente</string>
+    <string name="pdf_generado">PDF generado exitosamente</string>
+    <string name="recibo_anulado">Recibo anulado</string>
+    <string name="error_campos_vacios">Por favor, complete todos los campos obligatorios</string>
+    <string name="error_sin_items">Debe agregar al menos un ítem</string>
+    <string name="error_monto_invalido">El monto pagado no puede ser mayor al total</string>
+    <string name="error_generar_pdf">Error al generar el PDF</string>
+    <string name="error_abrir_pdf">Error al abrir el PDF</string>
+    
+    <!-- Moneda -->
+    <string name="moneda">S/</string>
+    <string name="formato_moneda">S/ %.2f</string>
+</resources>
