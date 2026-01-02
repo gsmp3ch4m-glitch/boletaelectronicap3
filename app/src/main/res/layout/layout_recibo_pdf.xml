@@ -4,7 +4,7 @@
     android:layout_width="595px"
     android:layout_height="842px"
     android:orientation="vertical"
-    android:background="#FFFFFF"
+    android:background="@color/surface"
     android:padding="40px">
 
     <!-- Header -->
@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="#1E88E5"
+        android:background="@color/primary"
         android:padding="16px"
         android:layout_marginBottom="20px">
 
@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:text="RECIBO DE PAGO"
             android:textSize="24px"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/on_primary"
             android:textStyle="bold"
             android:gravity="center"
             android:layout_marginBottom="8px" />
@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:text="N° REC-000001"
             android:textSize="16px"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/on_primary"
             android:gravity="center" />
     </LinearLayout>
 
@@ -41,7 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="#F5F5F5"
+        android:background="@color/surface_variant"
         android:padding="12px"
         android:layout_marginBottom="16px">
 
@@ -51,7 +51,7 @@
             android:text="DATOS DE LA EMPRESA"
             android:textSize="12px"
             android:textStyle="bold"
-            android:textColor="#1E88E5"
+            android:textColor="@color/primary"
             android:layout_marginBottom="8px" />
 
         <TextView
@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             android:text="Empresa XYZ S.A.C."
             android:textSize="11px"
-            android:textColor="#212121"
+            android:textColor="@color/text_primary"
             android:textStyle="bold" />
 
         <TextView
@@ -69,7 +69,7 @@
             android:layout_height="wrap_content"
             android:text="RUC: 20123456789"
             android:textSize="10px"
-            android:textColor="#212121" />
+            android:textColor="@color/text_primary" />
 
         <TextView
             android:id="@+id/pdfEmpresaDireccion"
@@ -77,7 +77,7 @@
             android:layout_height="wrap_content"
             android:text="Dirección: Av. Principal 123, Lima"
             android:textSize="10px"
-            android:textColor="#212121" />
+            android:textColor="@color/text_primary" />
 
         <TextView
             android:id="@+id/pdfEmpresaTelefono"
@@ -85,7 +85,7 @@
             android:layout_height="wrap_content"
             android:text="Teléfono: 987654321"
             android:textSize="10px"
-            android:textColor="#212121" />
+            android:textColor="@color/text_primary" />
 
         <TextView
             android:id="@+id/pdfEmpresaRedes"
@@ -93,7 +93,7 @@
             android:layout_height="wrap_content"
             android:text="Redes: @empresa"
             android:textSize="10px"
-            android:textColor="#212121" />
+            android:textColor="@color/text_primary" />
     </LinearLayout>
 
     <!-- Fecha -->
@@ -103,7 +103,7 @@
         android:layout_height="wrap_content"
         android:text="Fecha: 01/01/2026 - 10:30 AM"
         android:textSize="10px"
-        android:textColor="#757575"
+        android:textColor="@color/text_secondary"
         android:layout_marginBottom="16px" />
 
     <!-- Cliente Info -->
@@ -111,7 +111,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="#F5F5F5"
+        android:background="@color/surface_variant"
         android:padding="12px"
         android:layout_marginBottom="16px">
 
@@ -121,7 +121,7 @@
             android:text="DATOS DEL CLIENTE"
             android:textSize="12px"
             android:textStyle="bold"
-            android:textColor="#1E88E5"
+            android:textColor="@color/primary"
             android:layout_marginBottom="8px" />
 
         <TextView
@@ -130,7 +130,7 @@
             android:layout_height="wrap_content"
             android:text="Cliente: Juan Pérez"
             android:textSize="10px"
-            android:textColor="#212121" />
+            android:textColor="@color/text_primary" />
 
         <TextView
             android:id="@+id/pdfClienteDocumento"
@@ -138,7 +138,7 @@
             android:layout_height="wrap_content"
             android:text="DNI/RUC: 12345678"
             android:textSize="10px"
-            android:textColor="#212121" />
+            android:textColor="@color/text_primary" />
 
         <TextView
             android:id="@+id/pdfClienteTelefono"
@@ -146,7 +146,7 @@
             android:layout_height="wrap_content"
             android:text="Teléfono: 987654321"
             android:textSize="10px"
-            android:textColor="#212121" />
+            android:textColor="@color/text_primary" />
 
         <TextView
             android:id="@+id/pdfClienteDireccion"
@@ -154,7 +154,7 @@
             android:layout_height="wrap_content"
             android:text="Dirección: Lima, Perú"
             android:textSize="10px"
-            android:textColor="#212121" />
+            android:textColor="@color/text_primary" />
     </LinearLayout>
 
     <!-- Detalle Header -->
@@ -164,7 +164,7 @@
         android:text="DETALLE DE PRODUCTOS/SERVICIOS"
         android:textSize="12px"
         android:textStyle="bold"
-        android:textColor="#1E88E5"
+        android:textColor="@color/primary"
         android:layout_marginBottom="8px" />
 
     <!-- Table Header -->
@@ -172,7 +172,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="#E0E0E0"
+        android:background="@color/divider"
         android:padding="8px"
         android:layout_marginBottom="4px">
 
@@ -183,7 +183,7 @@
             android:text="Descripción"
             android:textSize="9px"
             android:textStyle="bold"
-            android:textColor="#212121" />
+            android:textColor="@color/text_primary" />
 
         <TextView
             android:layout_width="0dp"
@@ -192,7 +192,7 @@
             android:text="Cant."
             android:textSize="9px"
             android:textStyle="bold"
-            android:textColor="#212121"
+            android:textColor="@color/text_primary"
             android:gravity="center" />
 
         <TextView
@@ -202,7 +202,7 @@
             android:text="P. Unit."
             android:textSize="9px"
             android:textStyle="bold"
-            android:textColor="#212121"
+            android:textColor="@color/text_primary"
             android:gravity="end" />
 
         <TextView
@@ -212,7 +212,7 @@
             android:text="Total"
             android:textSize="9px"
             android:textStyle="bold"
-            android:textColor="#212121"
+            android:textColor="@color/text_primary"
             android:gravity="end" />
     </LinearLayout>
 
@@ -228,7 +228,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="2px"
-        android:background="#1E88E5"
+        android:background="@color/primary"
         android:layout_marginBottom="12px" />
 
     <!-- Totales -->
@@ -251,7 +251,7 @@
                 android:text="MONTO TOTAL:"
                 android:textSize="11px"
                 android:textStyle="bold"
-                android:textColor="#212121" />
+                android:textColor="@color/text_primary" />
 
             <TextView
                 android:id="@+id/pdfMontoTotal"
@@ -260,7 +260,7 @@
                 android:text="S/ 150.00"
                 android:textSize="11px"
                 android:textStyle="bold"
-                android:textColor="#212121" />
+                android:textColor="@color/text_primary" />
         </LinearLayout>
 
         <LinearLayout
@@ -276,7 +276,7 @@
                 android:layout_weight="1"
                 android:text="PAGO TOTAL:"
                 android:textSize="10px"
-                android:textColor="#212121" />
+                android:textColor="@color/text_primary" />
 
             <TextView
                 android:id="@+id/pdfMontoPagado"
@@ -284,7 +284,7 @@
                 android:layout_height="wrap_content"
                 android:text="S/ 150.00"
                 android:textSize="10px"
-                android:textColor="#4CAF50" />
+                android:textColor="@color/success" />
         </LinearLayout>
 
         <LinearLayout
@@ -300,7 +300,7 @@
                 android:layout_weight="1"
                 android:text="SALDO PENDIENTE:"
                 android:textSize="10px"
-                android:textColor="#212121" />
+                android:textColor="@color/text_primary" />
 
             <TextView
                 android:id="@+id/pdfSaldoPendiente"
@@ -308,7 +308,7 @@
                 android:layout_height="wrap_content"
                 android:text="S/ 0.00"
                 android:textSize="10px"
-                android:textColor="#F44336" />
+                android:textColor="@color/error" />
         </LinearLayout>
     </LinearLayout>
 
@@ -330,7 +330,7 @@
         <View
             android:layout_width="150px"
             android:layout_height="1px"
-            android:background="#212121"
+            android:background="@color/text_primary"
             android:layout_marginBottom="4px" />
 
         <TextView
@@ -338,7 +338,7 @@
             android:layout_height="wrap_content"
             android:text="Firma y Sello"
             android:textSize="9px"
-            android:textColor="#757575" />
+            android:textColor="@color/text_secondary" />
     </LinearLayout>
 
 </LinearLayout>
