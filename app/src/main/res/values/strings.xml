@@ -4,7 +4,7 @@
     
     <!-- Main Menu -->
     <string name="bienvenido">Bienvenido a</string>
-    <string name="menu_nuevo_recibo">Nuevo Recibo</string>
+    <string name="menu_nuevo_recibo">Nuevo Comprobante</string>
     <string name="menu_recibos_realizados">Recibos Realizados</string>
     <string name="menu_buscar_fecha">Buscar por Fecha</string>
     <string name="menu_ajustes">Ajustes de Empresa</string>
