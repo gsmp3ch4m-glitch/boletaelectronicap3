@@ -28,8 +28,11 @@ interface ReciboDao {
     @Query("UPDATE recibo SET estado = 'ANULADO' WHERE idRecibo = :id")
     suspend fun anularRecibo(id: Int)
     
-    @Query("SELECT MAX(CAST(SUBSTR(numeroRecibo, 5) AS INTEGER)) FROM recibo WHERE numeroRecibo LIKE 'REC-%'")
-    suspend fun getUltimoNumeroRecibo(): Int?
+    @Query("SELECT MAX(CAST(SUBSTR(numeroRecibo, 5) AS INTEGER)) FROM recibo WHERE tipoDocumento = :tipo")
+    suspend fun getUltimoNumeroPorTipo(tipo: String): Int?
+    
+    @Query("SELECT * FROM recibo WHERE tipoDocumento = :tipo ORDER BY fechaHoraEmision DESC, numeroRecibo DESC")
+    fun getRecibosPorTipo(tipo: String): LiveData<List<ReciboEntity>>
     
     @Delete
     suspend fun delete(recibo: ReciboEntity)

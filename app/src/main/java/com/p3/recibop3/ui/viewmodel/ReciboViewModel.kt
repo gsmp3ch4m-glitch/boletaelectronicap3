@@ -64,8 +64,12 @@ class ReciboViewModel(application: Application) : AndroidViewModel(application) 
         }
     }
     
-    suspend fun generarNumeroRecibo(): String {
-        return repository.generarNumeroRecibo()
+    suspend fun generarNumeroRecibo(tipoDocumento: String): String {
+        return repository.generarNumeroRecibo(tipoDocumento)
+    }
+    
+    fun getRecibosPorTipo(tipo: String): LiveData<List<ReciboEntity>> {
+        return repository.getRecibosPorTipo(tipo)
     }
     
     fun deleteRecibo(recibo: ReciboEntity) {

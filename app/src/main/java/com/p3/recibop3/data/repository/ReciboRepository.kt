@@ -48,10 +48,22 @@ class ReciboRepository(
         reciboDao.anularRecibo(id)
     }
     
-    suspend fun generarNumeroRecibo(): String {
-        val ultimoNumero = reciboDao.getUltimoNumeroRecibo() ?: 0
+    suspend fun generarNumeroRecibo(tipoDocumento: String): String {
+        val prefijo = when (tipoDocumento) {
+            "RECIBO" -> "REC"
+            "PROFORMA" -> "PRO"
+            "NOTA_VENTA" -> "NVE"
+            "COMANDA" -> "COM"
+            else -> "REC"
+        }
+        
+        val ultimoNumero = reciboDao.getUltimoNumeroPorTipo(tipoDocumento) ?: 0
         val nuevoNumero = ultimoNumero + 1
-        return String.format("REC-%06d", nuevoNumero)
+        return String.format("$prefijo-%06d", nuevoNumero)
+    }
+    
+    fun getRecibosPorTipo(tipo: String): LiveData<List<ReciboEntity>> {
+        return reciboDao.getRecibosPorTipo(tipo)
     }
     
     suspend fun deleteRecibo(recibo: ReciboEntity) {

@@ -21,6 +21,7 @@ data class ReciboEntity(
     @PrimaryKey(autoGenerate = true)
     val idRecibo: Int = 0,
     val numeroRecibo: String,
+    val tipoDocumento: String, // "RECIBO", "PROFORMA", "NOTA_VENTA", "COMANDA"
     val idEmpresa: Int,
     val fechaHoraEmision: Long,
     val fechaPersonalizada: String? = null,

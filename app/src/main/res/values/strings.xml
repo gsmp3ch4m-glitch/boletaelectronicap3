@@ -45,6 +45,11 @@
     <string name="pago_titulo">Información de Pago</string>
     <string name="pago_total">Pago Total</string>
     <string name="pago_parcial">Pago Parcial</string>
+    <string name="tipo_documento">Tipo de Documento</string>
+    <string name="tipo_recibo">Recibo de Venta</string>
+    <string name="tipo_proforma">Proforma</string>
+    <string name="tipo_nota_venta">Nota de Venta</string>
+    <string name="tipo_comanda">Comanda</string>
     <string name="monto_total">Monto Total:</string>
     <string name="monto_pagado">Monto Pagado:</string>
     <string name="saldo_pendiente">Saldo Pendiente:</string>

@@ -35,6 +35,16 @@ object PdfGenerator {
             val inflater = LayoutInflater.from(context)
             val pdfView = inflater.inflate(R.layout.layout_recibo_pdf, null, false)
             
+            // Set dynamic title based on document type
+            val titulo = when (recibo.tipoDocumento) {
+                "RECIBO" -> "RECIBO DE VENTA"
+                "PROFORMA" -> "PROFORMA"
+                "NOTA_VENTA" -> "NOTA DE VENTA"
+                "COMANDA" -> "COMANDA"
+                else -> "RECIBO DE PAGO"
+            }
+            pdfView.findViewById<TextView>(R.id.pdfTitulo)?.text = titulo
+            
             // Set empresa data
             pdfView.findViewById<TextView>(R.id.pdfEmpresaNombre)?.text = empresa.nombre
             pdfView.findViewById<TextView>(R.id.pdfEmpresaRuc)?.text = "RUC: ${empresa.ruc}"

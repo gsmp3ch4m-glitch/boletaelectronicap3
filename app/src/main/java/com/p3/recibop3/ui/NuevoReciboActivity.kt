@@ -5,6 +5,7 @@ import android.app.TimePickerDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -32,6 +33,7 @@ class NuevoReciboActivity : AppCompatActivity() {
     private lateinit var detallesAdapter: DetallesAdapter
     
     private var numeroRecibo = ""
+    private var tipoDocumento = "RECIBO"
     private var fechaHora = Calendar.getInstance()
     private var fechaPersonalizada: String? = null
     private var empresaId = 0
@@ -49,6 +51,7 @@ class NuevoReciboActivity : AppCompatActivity() {
         }
 
         setupRecyclerView()
+        setupTipoDocumentoDropdown()
         setupClickListeners()
         loadInitialData()
     }
@@ -62,6 +65,33 @@ class NuevoReciboActivity : AppCompatActivity() {
         binding.recyclerViewDetalles.apply {
             layoutManager = LinearLayoutManager(this@NuevoReciboActivity)
             adapter = detallesAdapter
+        }
+    }
+
+    private fun setupTipoDocumentoDropdown() {
+        val tiposDocumento = listOf(
+            getString(R.string.tipo_recibo),
+            getString(R.string.tipo_proforma),
+            getString(R.string.tipo_nota_venta),
+            getString(R.string.tipo_comanda)
+        )
+
+        val adapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, tiposDocumento)
+        binding.actvTipoDocumento.setAdapter(adapter)
+
+        binding.actvTipoDocumento.setOnItemClickListener { _, _, position, _ ->
+            tipoDocumento = when (position) {
+                0 -> "RECIBO"
+                1 -> "PROFORMA"
+                2 -> "NOTA_VENTA"
+                3 -> "COMANDA"
+                else -> "RECIBO"
+            }
+            // Regenerar número de recibo con el nuevo tipo
+            lifecycleScope.launch {
+                numeroRecibo = reciboViewModel.generarNumeroRecibo(tipoDocumento)
+                binding.tvNumeroRecibo.text = numeroRecibo
+            }
         }
     }
 
@@ -97,8 +127,8 @@ class NuevoReciboActivity : AppCompatActivity() {
 
     private fun loadInitialData() {
         lifecycleScope.launch {
-            // Generar número de recibo
-            numeroRecibo = reciboViewModel.generarNumeroRecibo()
+            // Generar número de recibo con tipo por defecto
+            numeroRecibo = reciboViewModel.generarNumeroRecibo(tipoDocumento)
             binding.tvNumeroRecibo.text = numeroRecibo
 
             // Mostrar fecha actual
@@ -234,6 +264,7 @@ class NuevoReciboActivity : AppCompatActivity() {
 
         val recibo = ReciboEntity(
             numeroRecibo = numeroRecibo,
+            tipoDocumento = tipoDocumento,
             idEmpresa = empresaId,
             fechaHoraEmision = fechaHora.timeInMillis,
             fechaPersonalizada = fechaPersonalizada,
