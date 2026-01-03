@@ -9,7 +9,7 @@ android {
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.p3.recibop3"
+        applicationId "com.p3.recibop3.v2"
         minSdk 23
         targetSdk 34
         versionCode 2
