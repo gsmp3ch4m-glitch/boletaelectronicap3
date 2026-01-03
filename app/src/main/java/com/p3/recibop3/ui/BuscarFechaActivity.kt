@@ -37,6 +37,7 @@ class BuscarFechaActivity : AppCompatActivity() {
 
         setupRecyclerView()
         setupDatePickers()
+        setupCalendarView()
         setupClickListeners()
     }
 
@@ -68,6 +69,26 @@ class BuscarFechaActivity : AppCompatActivity() {
             }
         }
     }
+
+    private fun setupCalendarView() {
+        // Set calendar date change listener
+        binding.calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
+            val selectedDate = Calendar.getInstance()
+            selectedDate.set(year, month, dayOfMonth, 0, 0, 0)
+            selectedDate.set(Calendar.MILLISECOND, 0)
+            
+            // Update "Desde" field with selected date
+            fechaDesde = selectedDate.clone() as Calendar
+            binding.etFechaDesde.setText(dateFormat.format(selectedDate.time))
+            
+            // Auto-set "Hasta" to same date if not set or if before "Desde"
+            if (fechaHasta.before(fechaDesde)) {
+                fechaHasta = selectedDate.clone() as Calendar
+                binding.etFechaHasta.setText(dateFormat.format(selectedDate.time))
+            }
+        }
+    }
+
 
     private fun setupClickListeners() {
         binding.btnBuscar.setOnClickListener {
