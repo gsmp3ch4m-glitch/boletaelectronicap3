@@ -16,6 +16,17 @@
         android:padding="16px"
         android:layout_marginBottom="20px">
 
+        <!-- Company Logo -->
+        <ImageView
+            android:id="@+id/pdfLogo"
+            android:layout_width="80px"
+            android:layout_height="80px"
+            android:layout_gravity="center"
+            android:scaleType="fitCenter"
+            android:layout_marginBottom="12px"
+            android:visibility="gone"
+            android:contentDescription="Logo de la empresa" />
+
         <TextView
             android:id="@+id/pdfTitulo"
             android:layout_width="match_parent"

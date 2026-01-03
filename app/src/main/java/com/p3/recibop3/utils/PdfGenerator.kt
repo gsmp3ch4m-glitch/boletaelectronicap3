@@ -45,6 +45,22 @@ object PdfGenerator {
             }
             pdfView.findViewById<TextView>(R.id.pdfTitulo)?.text = titulo
             
+            // Set company logo if available
+            empresa.logoPath?.let { path ->
+                val logoFile = File(path)
+                if (logoFile.exists()) {
+                    try {
+                        val logoBitmap = BitmapFactory.decodeFile(path)
+                        val logoView = pdfView.findViewById<ImageView>(R.id.pdfLogo)
+                        logoView?.setImageBitmap(logoBitmap)
+                        logoView?.visibility = View.VISIBLE
+                        android.util.Log.d("PdfGenerator", "Logo loaded successfully")
+                    } catch (e: Exception) {
+                        android.util.Log.e("PdfGenerator", "Error loading logo: ${e.message}")
+                    }
+                }
+            }
+            
             // Set empresa data
             pdfView.findViewById<TextView>(R.id.pdfEmpresaNombre)?.text = empresa.nombre
             pdfView.findViewById<TextView>(R.id.pdfEmpresaRuc)?.text = "RUC: ${empresa.ruc}"

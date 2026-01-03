@@ -16,6 +16,9 @@
     <string name="empresa_direccion">Dirección</string>
     <string name="empresa_telefono">Teléfono</string>
     <string name="empresa_redes">Redes Sociales (opcional)</string>
+    <string name="empresa_logo">Logo de la Empresa</string>
+    <string name="empresa_tomar_foto">Tomar Foto</string>
+    <string name="empresa_subir_galeria">Subir de Galería</string>
     <string name="empresa_firma">Firma</string>
     <string name="empresa_firmar_ahora">Firmar Ahora</string>
     <string name="empresa_cargar_firma">Cargar Firma</string>

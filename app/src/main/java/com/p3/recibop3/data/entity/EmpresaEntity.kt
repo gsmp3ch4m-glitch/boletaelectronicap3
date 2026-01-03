@@ -12,5 +12,6 @@ data class EmpresaEntity(
     val direccion: String,
     val telefono: String,
     val redesSociales: String? = null,
+    val logoPath: String? = null,
     val firmaPath: String? = null
 )

@@ -2,5 +2,6 @@
 <paths>
     <files-path name="recibos_pdf" path="ReciboP3/" />
     <files-path name="firmas" path="Firmas/" />
+    <files-path name="logos" path="Logos/" />
     <external-files-path name="external_files" path="." />
 </paths>
