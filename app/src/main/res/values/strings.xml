@@ -120,6 +120,7 @@
     <string name="pdf_generado">PDF generado exitosamente</string>
     <string name="recibo_anulado">Recibo anulado</string>
     <string name="error_campos_vacios">Por favor, complete todos los campos obligatorios</string>
+    <string name="error_cliente_nombre">Por favor ingrese el nombre del cliente</string>
     <string name="error_sin_items">Debe agregar al menos un ítem</string>
     <string name="error_monto_invalido">El monto pagado no puede ser mayor al total</string>
     <string name="error_generar_pdf">Error al generar el PDF</string>

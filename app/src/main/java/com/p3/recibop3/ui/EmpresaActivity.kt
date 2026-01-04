@@ -1,20 +1,19 @@
+package com.p3.recibop3.ui
+
 import android.app.Activity
 import android.content.Intent
 import android.graphics.BitmapFactory
-import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import com.p3.recibop3.R
 import com.p3.recibop3.data.entity.EmpresaEntity
 import com.p3.recibop3.databinding.ActivityEmpresaBinding
 import com.p3.recibop3.ui.viewmodel.EmpresaViewModel
-import com.yalantis.ucrop.UCrop
 import java.io.File
 import java.io.FileOutputStream
 
@@ -26,6 +25,7 @@ class EmpresaActivity : AppCompatActivity() {
     private var logoPath: String? = null
     private var empresaActual: EmpresaEntity? = null
     private var tempPhotoUri: Uri? = null
+    private var tempImageForEdit: Uri? = null
 
     private val firmaLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -55,7 +55,8 @@ class EmpresaActivity : AppCompatActivity() {
         ActivityResultContracts.GetContent()
     ) { uri: Uri? ->
         uri?.let {
-            showCropShapeDialog(it)
+            tempImageForEdit = it
+            openImageEditor(it)
         }
     }
 
@@ -63,7 +64,22 @@ class EmpresaActivity : AppCompatActivity() {
         ActivityResultContracts.TakePicture()
     ) { success ->
         if (success && tempPhotoUri != null) {
-            showCropShapeDialog(tempPhotoUri!!)
+            tempImageForEdit = tempPhotoUri
+            openImageEditor(tempPhotoUri!!)
+        }
+    }
+
+    private val editImageLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == RESULT_OK) {
+            result.data?.data?.let { editedUri ->
+                val path = saveImageFromUri(editedUri, "Logos", "logo")
+                if (path != null) {
+                    logoPath = path
+                    displayLogo(path)
+                }
+            }
         }
     }
 
@@ -149,15 +165,16 @@ class EmpresaActivity : AppCompatActivity() {
         val telefono = binding.etTelefono.text.toString().trim()
         val redes = binding.etRedesSociales.text.toString().trim()
 
-        if (nombre.isEmpty() || ruc.isEmpty() || direccion.isEmpty() || telefono.isEmpty()) {
-            Toast.makeText(this, R.string.error_campos_vacios, Toast.LENGTH_SHORT).show()
+        // Solo nombre, dirección y teléfono son obligatorios
+        if (nombre.isEmpty() || direccion.isEmpty() || telefono.isEmpty()) {
+            Toast.makeText(this, "Por favor complete: Nombre, Dirección y Teléfono", Toast.LENGTH_SHORT).show()
             return
         }
 
         val empresa = EmpresaEntity(
             idEmpresa = empresaActual?.idEmpresa ?: 0,
             nombre = nombre,
-            ruc = ruc,
+            ruc = ruc.ifEmpty { "Sin RUC" },
             direccion = direccion,
             telefono = telefono,
             redesSociales = redes.ifEmpty { null },
@@ -202,7 +219,7 @@ class EmpresaActivity : AppCompatActivity() {
         try {
             val photoFile = File(filesDir, "Logos").apply { mkdirs() }
             val file = File(photoFile, "logo_${System.currentTimeMillis()}.jpg")
-            tempPhotoUri = androidx.core.content.FileProvider.getUriForFile(
+            tempPhotoUri = FileProvider.getUriForFile(
                 this,
                 "com.p3.recibop3.v2.fileprovider",
                 file
@@ -214,64 +231,11 @@ class EmpresaActivity : AppCompatActivity() {
         }
     }
 
-    private fun showCropShapeDialog(sourceUri: Uri) {
-        val shapes = arrayOf("Rectangular (Por defecto)", "Cuadrado", "Circular")
-        
-        AlertDialog.Builder(this)
-            .setTitle("Seleccionar forma del logo")
-            .setItems(shapes) { _, which ->
-                when (which) {
-                    0 -> startCrop(sourceUri, UCrop.RATIO_ORIGIN, UCrop.RATIO_ORIGIN, false) // Rectangular
-                    1 -> startCrop(sourceUri, 1f, 1f, false) // Square
-                    2 -> startCrop(sourceUri, 1f, 1f, true) // Circle
-                }
-            }
-            .setNegativeButton("Cancelar", null)
-            .show()
+    private fun openImageEditor(imageUri: Uri) {
+        val intent = Intent(this, EditImageActivity::class.java)
+        intent.putExtra("image_uri", imageUri)
+        editImageLauncher.launch(intent)
     }
-
-    private fun startCrop(sourceUri: Uri, aspectRatioX: Float, aspectRatioY: Float, isCircle: Boolean) {
-        val destinationUri = Uri.fromFile(File(cacheDir, "cropped_logo_${System.currentTimeMillis()}.jpg"))
-        
-        val uCrop = UCrop.of(sourceUri, destinationUri)
-            .withAspectRatio(aspectRatioX, aspectRatioY)
-            .withMaxResultSize(800, 800)
-        
-        val options = UCrop.Options()
-        options.setCompressionQuality(90)
-        options.setToolbarColor(getColor(R.color.primary))
-        options.setStatusBarColor(getColor(R.color.primary_dark))
-        options.setActiveControlsWidgetColor(getColor(R.color.primary))
-        options.setToolbarTitle("Recortar Logo")
-        
-        if (isCircle) {
-            options.setCircleDimmedLayer(true)
-        }
-        
-        uCrop.withOptions(options)
-        uCrop.start(this)
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        
-        if (resultCode == RESULT_OK && requestCode == UCrop.REQUEST_CROP) {
-            data?.let {
-                val resultUri = UCrop.getOutput(it)
-                resultUri?.let { uri ->
-                    val path = saveImageFromUri(uri, "Logos", "logo")
-                    if (path != null) {
-                        logoPath = path
-                        displayLogo(path)
-                    }
-                }
-            }
-        } else if (resultCode == UCrop.RESULT_ERROR) {
-            val cropError = data?.let { UCrop.getError(it) }
-            Toast.makeText(this, "Error al recortar: ${cropError?.message}", Toast.LENGTH_SHORT).show()
-        }
-    }
-
 
     private fun saveImageFromUri(uri: Uri, folder: String, prefix: String): String? {
         return try {

@@ -229,9 +229,15 @@ class NuevoReciboActivity : AppCompatActivity() {
 
     private fun calcularSaldo() {
         val total = calcularMontoTotal()
-        val pagado = binding.etMontoPagado.text.toString().toDoubleOrNull() ?: 0.0
+        val pagado = binding.etMontoPagado.text.toString().trim().replace(",", ".").toDoubleOrNull() ?: 0.0
         val saldo = total - pagado
-        binding.tvSaldoPendiente.text = String.format("Saldo Pendiente: S/ %.2f", saldo)
+        
+        if (saldo > 0) {
+            binding.tvSaldoPendiente.visibility = View.VISIBLE
+            binding.tvSaldoPendiente.text = String.format("Saldo Pendiente: S/ %.2f", saldo)
+        } else {
+            binding.tvSaldoPendiente.visibility = View.GONE
+        }
     }
 
     private fun guardarRecibo() {
@@ -240,9 +246,8 @@ class NuevoReciboActivity : AppCompatActivity() {
         val clienteTelefono = binding.etClienteTelefono.text.toString().trim()
         val clienteDireccion = binding.etClienteDireccion.text.toString().trim()
 
-        if (clienteNombre.isEmpty() || clienteDocumento.isEmpty() || 
-            clienteTelefono.isEmpty() || clienteDireccion.isEmpty()) {
-            Toast.makeText(this, R.string.error_campos_vacios, Toast.LENGTH_SHORT).show()
+        if (clienteNombre.isEmpty()) {
+            Toast.makeText(this, R.string.error_cliente_nombre, Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -252,15 +257,30 @@ class NuevoReciboActivity : AppCompatActivity() {
         }
 
         val montoTotal = calcularMontoTotal()
-        val montoPagado = binding.etMontoPagado.text.toString().toDoubleOrNull() ?: 0.0
-
+        
+        // Leer y limpiar el monto pagado
+        val montoPagadoText = binding.etMontoPagado.text.toString().trim().replace(",", ".")
+        val montoPagado = montoPagadoText.toDoubleOrNull() ?: 0.0
+        
+        android.util.Log.d("NuevoRecibo", "Monto Total: $montoTotal")
+        android.util.Log.d("NuevoRecibo", "Monto Pagado Text: '$montoPagadoText'")
+        android.util.Log.d("NuevoRecibo", "Monto Pagado: $montoPagado")
+        
+        if (montoPagado <= 0) {
+            Toast.makeText(this, "El monto pagado debe ser mayor a 0. Valor actual: $montoPagado", Toast.LENGTH_LONG).show()
+            return
+        }
+        
         if (montoPagado > montoTotal) {
-            Toast.makeText(this, R.string.error_monto_invalido, Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "El monto pagado ($montoPagado) no puede ser mayor al total ($montoTotal)", Toast.LENGTH_SHORT).show()
             return
         }
 
-        val pagoTipo = if (binding.rbPagoTotal.isChecked) "TOTAL" else "PARCIAL"
+        // Calcular saldo pendiente correctamente
         val saldoPendiente = montoTotal - montoPagado
+        
+        // Determinar tipo de pago automáticamente basado en el saldo
+        val pagoTipo = if (saldoPendiente == 0.0) "TOTAL" else "PARCIAL"
 
         val recibo = ReciboEntity(
             numeroRecibo = numeroRecibo,

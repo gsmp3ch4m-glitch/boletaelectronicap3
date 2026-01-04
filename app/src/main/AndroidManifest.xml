@@ -66,8 +66,12 @@
 
         <activity
             android:name=".ui.PdfViewerActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.EditImageActivity"
             android:exported="false"
-            android:parentActivityName=".ui.MainActivity" />
+            android:theme="@style/Theme.ReciboP3" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
