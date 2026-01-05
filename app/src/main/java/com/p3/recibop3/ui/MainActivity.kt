@@ -8,6 +8,8 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.p3.recibop3.R
 import com.p3.recibop3.databinding.ActivityMainBinding
 import com.p3.recibop3.ui.viewmodel.EmpresaViewModel
+import com.p3.recibop3.utils.applyBounceAnimation
+import com.p3.recibop3.utils.animatePopIn
 
 class MainActivity : AppCompatActivity() {
 
@@ -38,6 +40,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupClickListeners() {
+        // Apply Bounce Animation to all cards
+        binding.cardNuevoRecibo.applyBounceAnimation()
+        binding.cardRecibosRealizados.applyBounceAnimation()
+        binding.cardBuscarFecha.applyBounceAnimation()
+        binding.cardReportes.applyBounceAnimation()
+
+        // Existing Click Logic preserved
         binding.cardNuevoRecibo.setOnClickListener {
             startActivity(Intent(this, NuevoReciboActivity::class.java))
         }
@@ -48,6 +57,28 @@ class MainActivity : AppCompatActivity() {
 
         binding.cardBuscarFecha.setOnClickListener {
             startActivity(Intent(this, BuscarFechaActivity::class.java))
+        }
+    }
+
+    private fun animateDashboardEntrance() {
+        // Hide initially
+        binding.cardNuevoRecibo.alpha = 0f
+        binding.cardRecibosRealizados.alpha = 0f
+        binding.cardBuscarFecha.alpha = 0f
+        binding.cardReportes.alpha = 0f
+
+        // Staggered Pop-In
+        binding.cardNuevoRecibo.animatePopIn(delay = 100)
+        binding.cardRecibosRealizados.animatePopIn(delay = 200)
+        binding.cardBuscarFecha.animatePopIn(delay = 300)
+        binding.cardReportes.animatePopIn(delay = 400)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        // Trigger animation every time the activity starts/returns
+        binding.gridLayout.post {
+            animateDashboardEntrance()
         }
     }
 

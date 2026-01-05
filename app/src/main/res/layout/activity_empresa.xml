@@ -211,6 +211,49 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
+            <!-- Security Section -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Seguridad"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/primary"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="16dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="PIN de Seguridad (6 números)"
+                style="@style/Widget.ReciboP3.TextInputLayout"
+                android:layout_marginBottom="12dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etPin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberPassword"
+                    android:maxLength="6" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switchAppLock"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Solicitar PIN al iniciar la App"
+                android:checked="false"
+                android:layout_marginBottom="24dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnFactoryReset"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Restablecer de Fábrica"
+                android:layout_marginBottom="16dp"
+                app:backgroundTint="@color/error"
+                style="@style/Widget.ReciboP3.Button" />
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnGuardar"
                 android:layout_width="match_parent"

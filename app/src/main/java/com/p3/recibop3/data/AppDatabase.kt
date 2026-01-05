@@ -17,7 +17,7 @@ import com.p3.recibop3.data.entity.ReciboEntity
         ReciboEntity::class,
         DetalleReciboEntity::class
     ],
-    version = 3,
+    version = 4,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {

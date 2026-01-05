@@ -42,4 +42,14 @@ class EmpresaViewModel(application: Application) : AndroidViewModel(application)
             repository.deleteAll()
         }
     }
+
+    fun factoryReset(onComplete: () -> Unit) {
+        viewModelScope.launch {
+            kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.IO) {
+                val db = com.p3.recibop3.data.AppDatabase.getDatabase(getApplication())
+                db.clearAllTables()
+            }
+            onComplete()
+        }
+    }
 }

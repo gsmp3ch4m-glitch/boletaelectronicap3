@@ -14,6 +14,7 @@ import com.p3.recibop3.R
 import com.p3.recibop3.data.entity.EmpresaEntity
 import com.p3.recibop3.databinding.ActivityEmpresaBinding
 import com.p3.recibop3.ui.viewmodel.EmpresaViewModel
+import com.p3.recibop3.utils.applyBounceAnimation
 import java.io.File
 import java.io.FileOutputStream
 
@@ -117,6 +118,13 @@ class EmpresaActivity : AppCompatActivity() {
     }
 
     private fun setupClickListeners() {
+        // Apply Bounce Animations
+        binding.btnFirmarAhora.applyBounceAnimation()
+        binding.btnCargarFirma.applyBounceAnimation()
+        binding.btnTomarFoto.applyBounceAnimation()
+        binding.btnSubirGaleria.applyBounceAnimation()
+        binding.btnGuardar.applyBounceAnimation()
+        
         binding.btnFirmarAhora.setOnClickListener {
             firmaLauncher.launch(Intent(this, FirmaActivity::class.java))
         }
@@ -136,6 +144,8 @@ class EmpresaActivity : AppCompatActivity() {
         binding.btnGuardar.setOnClickListener {
             guardarEmpresa()
         }
+        
+        setupFactoryReset()
     }
 
     private fun loadEmpresaData(empresa: EmpresaEntity) {
@@ -145,6 +155,8 @@ class EmpresaActivity : AppCompatActivity() {
             etDireccion.setText(empresa.direccion)
             etTelefono.setText(empresa.telefono)
             etRedesSociales.setText(empresa.redesSociales ?: "")
+            etPin.setText(empresa.password ?: "")
+            switchAppLock.isChecked = empresa.isAppLockEnabled
             
             empresa.logoPath?.let {
                 logoPath = it
@@ -164,10 +176,17 @@ class EmpresaActivity : AppCompatActivity() {
         val direccion = binding.etDireccion.text.toString().trim()
         val telefono = binding.etTelefono.text.toString().trim()
         val redes = binding.etRedesSociales.text.toString().trim()
+        val pin = binding.etPin.text.toString().trim()
+        val isAppLock = binding.switchAppLock.isChecked
 
-        // Solo nombre, dirección y teléfono son obligatorios
+        // Solo nombre, dirección, teléfono y PIN son obligatorios
         if (nombre.isEmpty() || direccion.isEmpty() || telefono.isEmpty()) {
             Toast.makeText(this, "Por favor complete: Nombre, Dirección y Teléfono", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        if (pin.length != 6) {
+            Toast.makeText(this, "El PIN de seguridad debe tener 6 dígitos", Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -179,11 +198,63 @@ class EmpresaActivity : AppCompatActivity() {
             telefono = telefono,
             redesSociales = redes.ifEmpty { null },
             logoPath = logoPath,
-            firmaPath = firmaPath
+            firmaPath = firmaPath,
+            password = pin,
+            isAppLockEnabled = isAppLock
         )
 
         empresaViewModel.insertOrUpdate(empresa) {
             Toast.makeText(this, R.string.empresa_guardada, Toast.LENGTH_SHORT).show()
+            finish()
+        }
+    }
+    
+    // Setup listener for Factory Reset Button
+    private fun setupFactoryReset() {
+        binding.btnFactoryReset.setOnClickListener {
+            showFactoryResetConfirmation()
+        }
+    }
+
+    private fun showFactoryResetConfirmation() {
+        val input = com.google.android.material.textfield.TextInputEditText(this)
+        input.inputType = android.text.InputType.TYPE_CLASS_NUMBER or android.text.InputType.TYPE_NUMBER_VARIATION_PASSWORD
+        input.hint = "Ingrese su PIN actual"
+        
+        // Add container to provide padding
+        val container = android.widget.FrameLayout(this)
+        val params = android.widget.FrameLayout.LayoutParams(
+            android.view.ViewGroup.LayoutParams.MATCH_PARENT, 
+            android.view.ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+        params.leftMargin = 50
+        params.rightMargin = 50
+        input.layoutParams = params
+        container.addView(input)
+
+        com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
+            .setTitle("RESTABLECER DE FÁBRICA")
+            .setMessage("Esta acción borrará TODOS los datos (recibos, logos, configuraciones). Esta acción es irreversible.\n\nIngrese su PIN para confirmar:")
+            .setView(container)
+            .setPositiveButton("BORRAR TODO") { _, _ ->
+                val enteredPin = input.text.toString()
+                if (enteredPin == empresaActual?.password) {
+                    performFactoryReset()
+                } else {
+                    Toast.makeText(this, "PIN Incorrecto", Toast.LENGTH_SHORT).show()
+                }
+            }
+            .setNegativeButton("Cancelar", null)
+            .show()
+    }
+
+    private fun performFactoryReset() {
+        empresaViewModel.factoryReset {
+            Toast.makeText(this, "Aplicación Restablecida", Toast.LENGTH_LONG).show()
+            // Restart App
+            val intent = Intent(applicationContext, SplashActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            startActivity(intent)
             finish()
         }
     }

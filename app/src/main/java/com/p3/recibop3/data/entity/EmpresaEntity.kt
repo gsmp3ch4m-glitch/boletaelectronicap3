@@ -13,5 +13,7 @@ data class EmpresaEntity(
     val telefono: String,
     val redesSociales: String? = null,
     val logoPath: String? = null,
-    val firmaPath: String? = null
+    val firmaPath: String? = null,
+    val password: String? = null,
+    val isAppLockEnabled: Boolean = false
 )
