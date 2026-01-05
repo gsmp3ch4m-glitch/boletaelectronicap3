@@ -40,6 +40,9 @@ interface ReciboDao {
     @Query("SELECT * FROM recibo WHERE tipoDocumento = :tipo ORDER BY fechaHoraEmision DESC, numeroRecibo DESC")
     fun getRecibosPorTipo(tipo: String): LiveData<List<ReciboEntity>>
     
+    @Query("SELECT * FROM recibo WHERE (fechaHoraEmision BETWEEN :fechaInicio AND :fechaFin) AND tipoDocumento IN (:types) ORDER BY fechaHoraEmision DESC")
+    fun getRecibosByTypesInRange(types: List<String>, fechaInicio: Long, fechaFin: Long): LiveData<List<ReciboEntity>>
+    
     @Delete
     suspend fun delete(recibo: ReciboEntity)
 }

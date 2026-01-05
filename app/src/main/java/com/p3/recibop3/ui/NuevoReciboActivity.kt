@@ -218,7 +218,12 @@ class NuevoReciboActivity : AppCompatActivity() {
 
     private fun calcularTotales() {
         val total = calcularMontoTotal()
-        binding.tvMontoTotal.text = String.format("Monto Total: S/ %.2f", total)
+        
+        if (tipoDocumento == "PROFORMA") {
+            binding.tvMontoTotal.text = String.format("Monto Referencial: S/ %.2f", total)
+        } else {
+            binding.tvMontoTotal.text = String.format("Monto Total: S/ %.2f", total)
+        }
         
         if (binding.rbPagoTotal.isChecked) {
             binding.etMontoPagado.setText(String.format("%.2f", total))

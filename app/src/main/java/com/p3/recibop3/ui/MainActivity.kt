@@ -58,6 +58,10 @@ class MainActivity : AppCompatActivity() {
         binding.cardBuscarFecha.setOnClickListener {
             startActivity(Intent(this, BuscarFechaActivity::class.java))
         }
+
+        binding.cardReportes.setOnClickListener {
+            startActivity(Intent(this, ReportesActivity::class.java))
+        }
     }
 
     private fun animateDashboardEntrance() {

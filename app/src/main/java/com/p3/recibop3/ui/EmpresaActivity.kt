@@ -203,6 +203,7 @@ class EmpresaActivity : AppCompatActivity() {
             isAppLockEnabled = isAppLock
         )
 
+
         empresaViewModel.insertOrUpdate(empresa) {
             Toast.makeText(this, R.string.empresa_guardada, Toast.LENGTH_SHORT).show()
             finish()
