@@ -5,7 +5,7 @@
     <!-- Main Menu -->
     <string name="bienvenido">Bienvenido a</string>
     <string name="menu_nuevo_recibo">Nuevo Comprobante</string>
-    <string name="menu_recibos_realizados">Recibos Realizados</string>
+    <string name="menu_recibos_realizados">Comprobantes Emitidos</string>
     <string name="menu_buscar_fecha">Buscar por Fecha</string>
     <string name="menu_ajustes">Ajustes de Empresa</string>
     
@@ -33,8 +33,8 @@
     <string name="firma_vacia">Por favor, realice su firma antes de guardar</string>
     
     <!-- Nuevo Recibo -->
-    <string name="nuevo_recibo_titulo">Nuevo Recibo</string>
-    <string name="recibo_numero">Número de Recibo:</string>
+    <string name="nuevo_recibo_titulo">Nuevo Comprobante</string>
+    <string name="recibo_numero">Número de Documento:</string>
     <string name="recibo_fecha">Fecha y Hora:</string>
     <string name="recibo_cambiar_fecha">Cambiar Fecha</string>
     <string name="cliente_titulo">Datos del Cliente</string>
@@ -56,7 +56,7 @@
     <string name="monto_total">Monto Total:</string>
     <string name="monto_pagado">Monto Pagado:</string>
     <string name="saldo_pendiente">Saldo Pendiente:</string>
-    <string name="generar_pdf">Guardar y Generar PDF</string>
+    <string name="generar_pdf">Guardar y Generar Documento</string>
     
     <!-- Detalle Item Dialog -->
     <string name="item_titulo">Agregar Producto/Servicio</string>
@@ -70,8 +70,8 @@
     <string name="item_actualizar">Actualizar</string>
     
     <!-- Recibos List -->
-    <string name="recibos_titulo">Recibos Realizados</string>
-    <string name="recibos_vacio">No hay recibos registrados</string>
+    <string name="recibos_titulo">Comprobantes Emitidos</string>
+    <string name="recibos_vacio">No hay comprobantes registrados</string>
     <string name="estado_emitido">EMITIDO</string>
     <string name="estado_anulado">ANULADO</string>
     

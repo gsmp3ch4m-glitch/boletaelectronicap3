@@ -58,6 +58,7 @@ class ReciboDetalleActivity : AppCompatActivity() {
     private fun loadReciboData() {
         reciboViewModel.getReciboByIdLive(reciboId).observe(this) { recibo ->
             recibo?.let {
+                checkAndFixAnuladoPdf(it)
                 binding.apply {
                     tvNumeroRecibo.text = it.numeroRecibo
                     
@@ -72,10 +73,12 @@ class ReciboDetalleActivity : AppCompatActivity() {
                     chipEstado.text = it.estado
                     if (it.estado == "EMITIDO") {
                         chipEstado.setChipBackgroundColorResource(R.color.estado_emitido)
-                        btnAnular.isEnabled = true
+                        btnAnular.visibility = android.view.View.VISIBLE
+                        btnDesanular.visibility = android.view.View.GONE
                     } else {
                         chipEstado.setChipBackgroundColorResource(R.color.estado_anulado)
-                        btnAnular.isEnabled = false
+                        btnAnular.visibility = android.view.View.GONE
+                        btnDesanular.visibility = android.view.View.VISIBLE
                     }
                     
                     tvClienteNombre.text = "Nombre: ${it.clienteNombre}"
@@ -107,10 +110,16 @@ class ReciboDetalleActivity : AppCompatActivity() {
             compartirPdf()
         }
 
-        binding.btnAnular.setOnClickListener {
+                binding.btnAnular.setOnClickListener {
             confirmarAnulacion()
         }
+        
+        binding.btnDesanular.setOnClickListener {
+            confirmarDesanulacion()
+        }
     }
+    
+
 
     private fun verPdf() {
         if (pdfPath == null) {
@@ -175,5 +184,27 @@ class ReciboDetalleActivity : AppCompatActivity() {
             }
             .setNegativeButton(R.string.no, null)
             .show()
+    }
+
+    private fun confirmarDesanulacion() {
+        MaterialAlertDialogBuilder(this)
+            .setTitle("Desanular Recibo")
+            .setMessage("¿Estás seguro de que quieres RESTAURAR este recibo a estado EMITIDO?")
+            .setPositiveButton(R.string.si) { _, _ ->
+                reciboViewModel.desanularRecibo(reciboId)
+                Toast.makeText(this, "Recibo restaurado correctamente", Toast.LENGTH_SHORT).show()
+            }
+            .setNegativeButton(R.string.no, null)
+            .show()
+    }
+    private fun checkAndFixAnuladoPdf(recibo: com.p3.recibop3.data.entity.ReciboEntity) {
+        if (recibo.estado == "ANULADO" && recibo.pdfPath != null) {
+            val file = File(recibo.pdfPath!!)
+            // If the current file is NOT the _ANULADO version, trigger update
+            if (!file.name.contains("_ANULADO")) {
+               Toast.makeText(this, "Actualizando formato de recibo anulado...", Toast.LENGTH_SHORT).show()
+               reciboViewModel.regenerarPdfAnulado(reciboId)
+            }
+        }
     }
 }

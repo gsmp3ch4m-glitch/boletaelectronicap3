@@ -1,356 +1,374 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="595px"
     android:layout_height="842px"
-    android:orientation="vertical"
-    android:background="@color/surface"
-    android:padding="40px">
+    android:background="@color/surface">
 
-    <!-- Header -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@color/primary"
-        android:padding="8px"
-        android:layout_marginBottom="16px">
-
-        <!-- Company Logo -->
-        <ImageView
-            android:id="@+id/pdfLogo"
-            android:layout_width="50px"
-            android:layout_height="50px"
-            android:layout_gravity="center"
-            android:scaleType="fitCenter"
-            android:layout_marginBottom="6px"
-            android:visibility="gone"
-            android:contentDescription="Logo de la empresa" />
-
-        <TextView
-            android:id="@+id/pdfTitulo"
+        android:padding="40px">
+    
+        <!-- Header -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="RECIBO DE PAGO"
-            android:textSize="18px"
-            android:textColor="@color/on_primary"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:layout_marginBottom="4px" />
-
-        <TextView
-            android:id="@+id/pdfNumeroRecibo"
+            android:orientation="vertical"
+            android:background="@color/primary"
+            android:padding="8px"
+            android:layout_marginBottom="16px">
+    
+            <!-- Company Logo -->
+            <ImageView
+                android:id="@+id/pdfLogo"
+                android:layout_width="50px"
+                android:layout_height="50px"
+                android:layout_gravity="center"
+                android:scaleType="fitCenter"
+                android:layout_marginBottom="6px"
+                android:visibility="gone"
+                android:contentDescription="Logo de la empresa" />
+    
+            <TextView
+                android:id="@+id/pdfTitulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="RECIBO DE PAGO"
+                android:textSize="18px"
+                android:textColor="@color/on_primary"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_marginBottom="4px" />
+    
+            <TextView
+                android:id="@+id/pdfNumeroRecibo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="N° REC-000001"
+                android:textSize="12px"
+                android:textColor="@color/on_primary"
+                android:gravity="center" />
+        </LinearLayout>
+    
+        <!-- Empresa Info -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="N° REC-000001"
-            android:textSize="12px"
-            android:textColor="@color/on_primary"
-            android:gravity="center" />
-    </LinearLayout>
-
-    <!-- Empresa Info -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@color/surface_variant"
-        android:padding="10px"
-        android:layout_marginBottom="12px">
-
+            android:orientation="vertical"
+            android:background="@color/surface_variant"
+            android:padding="10px"
+            android:layout_marginBottom="12px">
+    
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="DATOS DE LA EMPRESA"
+                android:textSize="12px"
+                android:textStyle="bold"
+                android:textColor="@color/primary"
+                android:layout_marginBottom="8px" />
+    
+            <TextView
+                android:id="@+id/pdfEmpresaNombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Empresa XYZ S.A.C."
+                android:textSize="11px"
+                android:textColor="@color/text_primary"
+                android:textStyle="bold" />
+    
+            <TextView
+                android:id="@+id/pdfEmpresaRuc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="RUC: 20123456789"
+                android:textSize="10px"
+                android:textColor="@color/text_primary" />
+    
+            <TextView
+                android:id="@+id/pdfEmpresaDireccion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Dirección: Av. Principal 123, Lima"
+                android:textSize="10px"
+                android:textColor="@color/text_primary" />
+    
+            <TextView
+                android:id="@+id/pdfEmpresaTelefono"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Teléfono: 987654321"
+                android:textSize="10px"
+                android:textColor="@color/text_primary" />
+    
+            <TextView
+                android:id="@+id/pdfEmpresaRedes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Redes: @empresa"
+                android:textSize="10px"
+                android:textColor="@color/text_primary" />
+        </LinearLayout>
+    
+        <!-- Fecha -->
+        <TextView
+            android:id="@+id/pdfFecha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Fecha: 01/01/2026 - 10:30 AM"
+            android:textSize="10px"
+            android:textColor="@color/text_secondary"
+            android:layout_marginBottom="16px" />
+    
+        <!-- Cliente Info -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/surface_variant"
+            android:padding="12px"
+            android:layout_marginBottom="16px">
+    
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="DATOS DEL CLIENTE"
+                android:textSize="12px"
+                android:textStyle="bold"
+                android:textColor="@color/primary"
+                android:layout_marginBottom="8px" />
+    
+            <TextView
+                android:id="@+id/pdfClienteNombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cliente: Juan Pérez"
+                android:textSize="10px"
+                android:textColor="@color/text_primary" />
+    
+            <TextView
+                android:id="@+id/pdfClienteDocumento"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="DNI/RUC: 12345678"
+                android:textSize="10px"
+                android:textColor="@color/text_primary" />
+    
+            <TextView
+                android:id="@+id/pdfClienteTelefono"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Teléfono: 987654321"
+                android:textSize="10px"
+                android:textColor="@color/text_primary" />
+    
+            <TextView
+                android:id="@+id/pdfClienteDireccion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Dirección: Lima, Perú"
+                android:textSize="10px"
+                android:textColor="@color/text_primary" />
+        </LinearLayout>
+    
+        <!-- Detalle Header -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="DATOS DE LA EMPRESA"
+            android:text="DETALLE DE PRODUCTOS/SERVICIOS"
             android:textSize="12px"
             android:textStyle="bold"
             android:textColor="@color/primary"
             android:layout_marginBottom="8px" />
-
-        <TextView
-            android:id="@+id/pdfEmpresaNombre"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Empresa XYZ S.A.C."
-            android:textSize="11px"
-            android:textColor="@color/text_primary"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/pdfEmpresaRuc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="RUC: 20123456789"
-            android:textSize="10px"
-            android:textColor="@color/text_primary" />
-
-        <TextView
-            android:id="@+id/pdfEmpresaDireccion"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Dirección: Av. Principal 123, Lima"
-            android:textSize="10px"
-            android:textColor="@color/text_primary" />
-
-        <TextView
-            android:id="@+id/pdfEmpresaTelefono"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Teléfono: 987654321"
-            android:textSize="10px"
-            android:textColor="@color/text_primary" />
-
-        <TextView
-            android:id="@+id/pdfEmpresaRedes"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Redes: @empresa"
-            android:textSize="10px"
-            android:textColor="@color/text_primary" />
-    </LinearLayout>
-
-    <!-- Fecha -->
-    <TextView
-        android:id="@+id/pdfFecha"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Fecha: 01/01/2026 - 10:30 AM"
-        android:textSize="10px"
-        android:textColor="@color/text_secondary"
-        android:layout_marginBottom="16px" />
-
-    <!-- Cliente Info -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@color/surface_variant"
-        android:padding="12px"
-        android:layout_marginBottom="16px">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="DATOS DEL CLIENTE"
-            android:textSize="12px"
-            android:textStyle="bold"
-            android:textColor="@color/primary"
-            android:layout_marginBottom="8px" />
-
-        <TextView
-            android:id="@+id/pdfClienteNombre"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Cliente: Juan Pérez"
-            android:textSize="10px"
-            android:textColor="@color/text_primary" />
-
-        <TextView
-            android:id="@+id/pdfClienteDocumento"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="DNI/RUC: 12345678"
-            android:textSize="10px"
-            android:textColor="@color/text_primary" />
-
-        <TextView
-            android:id="@+id/pdfClienteTelefono"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Teléfono: 987654321"
-            android:textSize="10px"
-            android:textColor="@color/text_primary" />
-
-        <TextView
-            android:id="@+id/pdfClienteDireccion"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Dirección: Lima, Perú"
-            android:textSize="10px"
-            android:textColor="@color/text_primary" />
-    </LinearLayout>
-
-    <!-- Detalle Header -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="DETALLE DE PRODUCTOS/SERVICIOS"
-        android:textSize="12px"
-        android:textStyle="bold"
-        android:textColor="@color/primary"
-        android:layout_marginBottom="8px" />
-
-    <!-- Table Header -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@color/divider"
-        android:padding="8px"
-        android:layout_marginBottom="4px">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:text="Descripción"
-            android:textSize="9px"
-            android:textStyle="bold"
-            android:textColor="@color/text_primary" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Cant."
-            android:textSize="9px"
-            android:textStyle="bold"
-            android:textColor="@color/text_primary"
-            android:gravity="center" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.5"
-            android:text="P. Unit."
-            android:textSize="9px"
-            android:textStyle="bold"
-            android:textColor="@color/text_primary"
-            android:gravity="end" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.5"
-            android:text="Total"
-            android:textSize="9px"
-            android:textStyle="bold"
-            android:textColor="@color/text_primary"
-            android:gravity="end" />
-    </LinearLayout>
-
-    <!-- Detalles Container -->
-    <LinearLayout
-        android:id="@+id/pdfDetallesContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginBottom="16px" />
-
-    <!-- Divider -->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2px"
-        android:background="@color/primary"
-        android:layout_marginBottom="12px" />
-
-    <!-- Totales -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginBottom="20px">
-
+    
+        <!-- Table Header -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:background="@color/divider"
+            android:padding="8px"
             android:layout_marginBottom="4px">
-
+    
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="MONTO TOTAL:"
-                android:textSize="11px"
+                android:layout_weight="3"
+                android:text="Descripción"
+                android:textSize="9px"
                 android:textStyle="bold"
                 android:textColor="@color/text_primary" />
-
+    
             <TextView
-                android:id="@+id/pdfMontoTotal"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="S/ 150.00"
-                android:textSize="11px"
+                android:layout_weight="1"
+                android:text="Cant."
+                android:textSize="9px"
                 android:textStyle="bold"
-                android:textColor="@color/text_primary" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="4px">
-
-            <TextView
-                android:id="@+id/pdfPagoTipoLabel"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="PAGO TOTAL:"
-                android:textSize="10px"
-                android:textColor="@color/text_primary" />
-
-            <TextView
-                android:id="@+id/pdfMontoPagado"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="S/ 150.00"
-                android:textSize="10px"
-                android:textColor="@color/success" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/pdfSaldoContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:visibility="gone">
-
+                android:textColor="@color/text_primary"
+                android:gravity="center" />
+    
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="SALDO PENDIENTE:"
-                android:textSize="10px"
-                android:textColor="@color/text_primary" />
-
+                android:layout_weight="1.5"
+                android:text="P. Unit."
+                android:textSize="9px"
+                android:textStyle="bold"
+                android:textColor="@color/text_primary"
+                android:gravity="end" />
+    
             <TextView
-                android:id="@+id/pdfSaldoPendiente"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="S/ 0.00"
-                android:textSize="10px"
-                android:textColor="@color/error" />
+                android:layout_weight="1.5"
+                android:text="Total"
+                android:textSize="9px"
+                android:textStyle="bold"
+                android:textColor="@color/text_primary"
+                android:gravity="end" />
         </LinearLayout>
-    </LinearLayout>
-
-    <!-- Firma -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        android:gravity="bottom|center">
-
-        <ImageView
-            android:id="@+id/pdfFirma"
-            android:layout_width="120px"
-            android:layout_height="60px"
-            android:scaleType="fitCenter"
-            android:layout_marginBottom="8px" />
-
+    
+        <!-- Detalles Container -->
+        <LinearLayout
+            android:id="@+id/pdfDetallesContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="16px" />
+    
+        <!-- Divider -->
         <View
-            android:layout_width="150px"
-            android:layout_height="1px"
-            android:background="@color/text_primary"
-            android:layout_marginBottom="4px" />
-
-        <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:background="@color/primary"
+            android:layout_marginBottom="12px" />
+    
+        <!-- Totales -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Firma y Sello"
-            android:textSize="9px"
-            android:textColor="@color/text_secondary" />
+            android:orientation="vertical"
+            android:layout_marginBottom="20px">
+    
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="4px">
+    
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="MONTO TOTAL:"
+                    android:textSize="11px"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary" />
+    
+                <TextView
+                    android:id="@+id/pdfMontoTotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="S/ 150.00"
+                    android:textSize="11px"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary" />
+            </LinearLayout>
+    
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="4px">
+    
+                <TextView
+                    android:id="@+id/pdfPagoTipoLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="PAGO TOTAL:"
+                    android:textSize="10px"
+                    android:textColor="@color/text_primary" />
+    
+                <TextView
+                    android:id="@+id/pdfMontoPagado"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="S/ 150.00"
+                    android:textSize="10px"
+                    android:textColor="@color/success" />
+            </LinearLayout>
+    
+            <LinearLayout
+                android:id="@+id/pdfSaldoContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone">
+    
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="SALDO PENDIENTE:"
+                    android:textSize="10px"
+                    android:textColor="@color/text_primary" />
+    
+                <TextView
+                    android:id="@+id/pdfSaldoPendiente"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="S/ 0.00"
+                    android:textSize="10px"
+                    android:textColor="@color/error" />
+            </LinearLayout>
+        </LinearLayout>
+    
+        <!-- Firma -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="bottom|center">
+    
+            <ImageView
+                android:id="@+id/pdfFirma"
+                android:layout_width="120px"
+                android:layout_height="60px"
+                android:scaleType="fitCenter"
+                android:layout_marginBottom="8px" />
+    
+            <View
+                android:layout_width="150px"
+                android:layout_height="1px"
+                android:background="@color/text_primary"
+                android:layout_marginBottom="4px" />
+    
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Firma y Sello"
+                android:textSize="9px"
+                android:textColor="@color/text_secondary" />
+        </LinearLayout>
+    
     </LinearLayout>
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/pdfWatermarkAnulado"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="ANULADO"
+        android:textSize="100px"
+        android:textColor="#50D32F2F"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:rotation="-45"
+        android:visibility="gone" />
+
+</FrameLayout>

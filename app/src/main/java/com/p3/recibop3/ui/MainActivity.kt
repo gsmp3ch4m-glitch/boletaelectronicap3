@@ -46,9 +46,20 @@ class MainActivity : AppCompatActivity() {
         binding.cardBuscarFecha.setOnClickListener {
             startActivity(Intent(this, BuscarFechaActivity::class.java))
         }
+    }
 
-        binding.cardAjustes.setOnClickListener {
-            startActivity(Intent(this, EmpresaActivity::class.java))
+    override fun onCreateOptionsMenu(menu: android.view.Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: android.view.MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_settings -> {
+                startActivity(Intent(this, EmpresaActivity::class.java))
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 

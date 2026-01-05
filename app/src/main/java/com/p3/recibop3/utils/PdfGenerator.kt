@@ -114,6 +114,17 @@ object PdfGenerator {
                 pdfView.findViewById<TextView>(R.id.pdfSaldoPendiente)?.text = 
                     String.format("S/ %.2f", recibo.saldoPendiente)
             }
+
+            // DEBUG: Log status for watermark
+            android.util.Log.d("PdfGenerator", "Checking watermark for status: '${recibo.estado}'")
+
+            // Set watermark if status is ANULADO
+            if (recibo.estado.equals("ANULADO", ignoreCase = true)) {
+                android.util.Log.d("PdfGenerator", "Status matches ANULADO - Showing watermark")
+                pdfView.findViewById<TextView>(R.id.pdfWatermarkAnulado)?.visibility = View.VISIBLE
+            } else {
+                 android.util.Log.d("PdfGenerator", "Status does NOT match ANULADO")
+            }
             
             // Set firma
             empresa.firmaPath?.let { path ->

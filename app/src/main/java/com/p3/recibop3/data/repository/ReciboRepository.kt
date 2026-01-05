@@ -48,6 +48,10 @@ class ReciboRepository(
         reciboDao.anularRecibo(id)
     }
     
+    suspend fun desanularRecibo(id: Int) {
+        reciboDao.desanularRecibo(id)
+    }
+    
     suspend fun generarNumeroRecibo(tipoDocumento: String): String {
         val prefijo = when (tipoDocumento) {
             "RECIBO" -> "REC"

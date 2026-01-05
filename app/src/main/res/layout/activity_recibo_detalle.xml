@@ -189,6 +189,15 @@
                 android:text="@string/anular_recibo"
                 android:backgroundTint="@color/error"
                 style="@style/Widget.ReciboP3.Button" />
+            
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnDesanular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="DESANULAR RECIBO"
+                android:backgroundTint="@color/primary"
+                android:visibility="gone"
+                style="@style/Widget.ReciboP3.Button" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

@@ -28,6 +28,9 @@ interface ReciboDao {
     @Query("UPDATE recibo SET estado = 'ANULADO' WHERE idRecibo = :id")
     suspend fun anularRecibo(id: Int)
     
+    @Query("UPDATE recibo SET estado = 'EMITIDO' WHERE idRecibo = :id")
+    suspend fun desanularRecibo(id: Int)
+
     @Query("SELECT MAX(CAST(SUBSTR(numeroRecibo, 5) AS INTEGER)) FROM recibo WHERE tipoDocumento = :tipo")
     suspend fun getUltimoNumeroPorTipo(tipo: String): Int?
     
