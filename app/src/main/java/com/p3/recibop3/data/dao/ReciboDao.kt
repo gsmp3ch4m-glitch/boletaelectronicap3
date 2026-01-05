@@ -24,6 +24,9 @@ interface ReciboDao {
     
     @Query("SELECT * FROM recibo WHERE fechaHoraEmision BETWEEN :fechaInicio AND :fechaFin ORDER BY fechaHoraEmision DESC")
     fun getRecibosPorFecha(fechaInicio: Long, fechaFin: Long): LiveData<List<ReciboEntity>>
+
+    @Query("SELECT * FROM recibo WHERE (fechaHoraEmision BETWEEN :fechaInicio AND :fechaFin) AND tipoDocumento = :tipo ORDER BY fechaHoraEmision DESC")
+    fun getRecibosPorFechaYTipo(fechaInicio: Long, fechaFin: Long, tipo: String): LiveData<List<ReciboEntity>>
     
     @Query("UPDATE recibo SET estado = 'ANULADO' WHERE idRecibo = :id")
     suspend fun anularRecibo(id: Int)

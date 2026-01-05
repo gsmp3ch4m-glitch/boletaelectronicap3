@@ -60,6 +60,10 @@ class ReciboViewModel(application: Application) : AndroidViewModel(application) 
     fun getRecibosPorFecha(fechaInicio: Long, fechaFin: Long): LiveData<List<ReciboEntity>> {
         return repository.getRecibosPorFecha(fechaInicio, fechaFin)
     }
+
+    fun getRecibosPorFechaYTipo(fechaInicio: Long, fechaFin: Long, tipo: String): LiveData<List<ReciboEntity>> {
+        return repository.getRecibosPorFechaYTipo(fechaInicio, fechaFin, tipo)
+    }
     
     fun anularRecibo(id: Int) {
         viewModelScope.launch {

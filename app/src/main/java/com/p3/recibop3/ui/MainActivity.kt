@@ -21,13 +21,16 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
 
+        // Hide default title as requested
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+
         // Observe empresa
         empresaViewModel.empresaActiva.observe(this) { empresa ->
             if (empresa != null) {
                 binding.tvEmpresaNombre.text = empresa.nombre
+                binding.tvEmpresaNombre.visibility = android.view.View.VISIBLE
             } else {
-                // No hay empresa, mostrar diálogo y redirigir
-                showNoEmpresaDialog()
+                binding.tvEmpresaNombre.text = "Registrar Empresa"
             }
         }
 
@@ -76,7 +79,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        // Refresh empresa data when returning to main
+        // Refresh empresa data
         empresaViewModel.empresaActiva.value?.let {
             binding.tvEmpresaNombre.text = it.nombre
         }

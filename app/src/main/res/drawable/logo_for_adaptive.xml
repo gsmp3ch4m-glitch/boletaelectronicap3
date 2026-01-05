@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Background layer to ensure logo stands out -->
+    
+    <!-- The Logo Bitmap, centered and scaled to fit roughly 60-70% of the icon to avoid clipping -->
+    <!-- The Logo Bitmap, scaled down significantly (30dp padding) to ensure it fits wholly within the safe zone -->
+    <item
+        android:drawable="@drawable/logo_comprobante_real"
+        android:top="10dp"
+        android:bottom="10dp"
+        android:left="10dp"
+        android:right="10dp" />
+</layer-list>

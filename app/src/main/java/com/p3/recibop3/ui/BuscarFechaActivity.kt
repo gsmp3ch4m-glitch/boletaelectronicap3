@@ -35,23 +35,9 @@ class BuscarFechaActivity : AppCompatActivity() {
             finish()
         }
 
-        setupRecyclerView()
         setupDatePickers()
         setupCalendarView()
         setupClickListeners()
-    }
-
-    private fun setupRecyclerView() {
-        adapter = RecibosAdapter { recibo ->
-            val intent = Intent(this, ReciboDetalleActivity::class.java)
-            intent.putExtra("recibo_id", recibo.idRecibo)
-            startActivity(intent)
-        }
-
-        binding.recyclerView.apply {
-            layoutManager = LinearLayoutManager(this@BuscarFechaActivity)
-            adapter = this@BuscarFechaActivity.adapter
-        }
     }
 
     private fun setupDatePickers() {
@@ -70,48 +56,54 @@ class BuscarFechaActivity : AppCompatActivity() {
         }
     }
 
+    private var fechaSeleccionadaDia: Calendar = Calendar.getInstance()
+
     private fun setupCalendarView() {
-        // Set calendar date change listener
+        // Set calendar date change listener for Single Day Search only
         binding.calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
             val selectedDate = Calendar.getInstance()
             selectedDate.set(year, month, dayOfMonth, 0, 0, 0)
             selectedDate.set(Calendar.MILLISECOND, 0)
-            
-            // Update "Desde" field with selected date
-            fechaDesde = selectedDate.clone() as Calendar
-            binding.etFechaDesde.setText(dateFormat.format(selectedDate.time))
-            
-            // Auto-set "Hasta" to same date if not set or if before "Desde"
-            if (fechaHasta.before(fechaDesde)) {
-                fechaHasta = selectedDate.clone() as Calendar
-                binding.etFechaHasta.setText(dateFormat.format(selectedDate.time))
-            }
+            fechaSeleccionadaDia = selectedDate
         }
     }
-
 
     private fun setupClickListeners() {
-        binding.btnBuscar.setOnClickListener {
-            buscarRecibos()
+        binding.btnBuscarRango.setOnClickListener {
+            mostrarDialogoFiltro(isRango = true)
+        }
+
+        binding.btnBuscarDia.setOnClickListener {
+            mostrarDialogoFiltro(isRango = false)
         }
     }
 
-    private fun showDatePicker(initialDate: Calendar, onDateSelected: (Calendar) -> Unit) {
-        DatePickerDialog(
-            this,
-            { _, year, month, day ->
-                val calendar = Calendar.getInstance()
-                calendar.set(year, month, day, 0, 0, 0)
-                calendar.set(Calendar.MILLISECOND, 0)
-                onDateSelected(calendar)
-            },
-            initialDate.get(Calendar.YEAR),
-            initialDate.get(Calendar.MONTH),
-            initialDate.get(Calendar.DAY_OF_MONTH)
-        ).show()
+    private fun mostrarDialogoFiltro(isRango: Boolean) {
+        val opciones = arrayOf("Todo", "Recibo", "Proforma", "Nota de Venta", "Comanda")
+        
+        com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
+            .setTitle("Seleccione Tipo de Documento")
+            .setItems(opciones) { _, which ->
+                val tipoSeleccionado = if (which == 0) null else {
+                    when(which) {
+                        1 -> "RECIBO"
+                        2 -> "PROFORMA"
+                        3 -> "NOTA_VENTA"
+                        4 -> "COMANDA"
+                        else -> null
+                    }
+                }
+                
+                if (isRango) {
+                    buscarPorRango(tipoSeleccionado)
+                } else {
+                    buscarPorDia(tipoSeleccionado)
+                }
+            }
+            .show()
     }
 
-    private fun buscarRecibos() {
+    private fun buscarPorRango(tipo: String?) {
         val desde = fechaDesde.apply {
             set(Calendar.HOUR_OF_DAY, 0)
             set(Calendar.MINUTE, 0)
@@ -126,15 +118,47 @@ class BuscarFechaActivity : AppCompatActivity() {
             set(Calendar.MILLISECOND, 999)
         }.timeInMillis
 
-        reciboViewModel.getRecibosPorFecha(desde, hasta).observe(this) { recibos ->
-            if (recibos.isEmpty()) {
-                binding.recyclerView.visibility = View.GONE
-                binding.tvEmpty.visibility = View.VISIBLE
-            } else {
-                binding.recyclerView.visibility = View.VISIBLE
-                binding.tvEmpty.visibility = View.GONE
-                adapter.submitList(recibos)
+        lanzarResultados(desde, hasta, tipo)
+    }
+
+    private fun buscarPorDia(tipo: String?) {
+        val inicio = fechaSeleccionadaDia.clone() as Calendar
+        inicio.set(Calendar.HOUR_OF_DAY, 0)
+        inicio.set(Calendar.MINUTE, 0)
+        inicio.set(Calendar.SECOND, 0)
+        inicio.set(Calendar.MILLISECOND, 0)
+
+        val fin = fechaSeleccionadaDia.clone() as Calendar
+        fin.set(Calendar.HOUR_OF_DAY, 23)
+        fin.set(Calendar.MINUTE, 59)
+        fin.set(Calendar.SECOND, 59)
+        fin.set(Calendar.MILLISECOND, 999)
+
+        lanzarResultados(inicio.timeInMillis, fin.timeInMillis, tipo)
+    }
+
+    private fun lanzarResultados(desde: Long, hasta: Long, tipo: String?) {
+        val intent = Intent(this, RecibosListActivity::class.java).apply {
+            putExtra("EXTRA_FECHA_INICIO", desde)
+            putExtra("EXTRA_FECHA_FIN", hasta)
+            if (tipo != null) {
+                putExtra("EXTRA_TIPO_DOC", tipo)
             }
         }
+        startActivity(intent)
+    }
+    private fun showDatePicker(initialDate: Calendar, onDateSelected: (Calendar) -> Unit) {
+        DatePickerDialog(
+            this,
+            { _, year, month, day ->
+                val calendar = Calendar.getInstance()
+                calendar.set(year, month, day, 0, 0, 0)
+                calendar.set(Calendar.MILLISECOND, 0)
+                onDateSelected(calendar)
+            },
+            initialDate.get(Calendar.YEAR),
+            initialDate.get(Calendar.MONTH),
+            initialDate.get(Calendar.DAY_OF_MONTH)
+        ).show()
     }
 }

@@ -43,6 +43,10 @@ class ReciboRepository(
     fun getRecibosPorFecha(fechaInicio: Long, fechaFin: Long): LiveData<List<ReciboEntity>> {
         return reciboDao.getRecibosPorFecha(fechaInicio, fechaFin)
     }
+
+    fun getRecibosPorFechaYTipo(fechaInicio: Long, fechaFin: Long, tipo: String): LiveData<List<ReciboEntity>> {
+        return reciboDao.getRecibosPorFechaYTipo(fechaInicio, fechaFin, tipo)
+    }
     
     suspend fun anularRecibo(id: Int) {
         reciboDao.anularRecibo(id)

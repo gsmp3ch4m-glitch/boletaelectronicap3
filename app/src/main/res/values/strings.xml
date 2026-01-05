@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Recibo P3</string>
+    <string name="app_name">ComprobantePe</string>
     
     <!-- Main Menu -->
     <string name="bienvenido">Bienvenido a</string>

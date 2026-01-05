@@ -19,100 +19,121 @@
             app:navigationIcon="@android:drawable/ic_menu_close_clear_cancel" />
     </com.google.android.material.appbar.AppBarLayout>
 
-    <LinearLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <com.google.android.material.card.MaterialCardView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/Widget.ReciboP3.Card"
-            android:layout_margin="16dp">
+            android:orientation="vertical"
+            android:padding="16dp">
 
-            <LinearLayout
+            <!-- Section 1: Range Search -->
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
+                android:text="Búsqueda por Rango"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@color/primary"
+                android:layout_marginBottom="12dp" />
 
-                <com.google.android.material.textfield.TextInputLayout
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.ReciboP3.Card"
+                android:layout_marginBottom="24dp">
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp"
-                    style="@style/Widget.ReciboP3.TextInputLayout"
-                    android:hint="@string/fecha_desde">
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etFechaDesde"
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:focusable="false"
-                        android:clickable="true"
-                        android:inputType="none" />
-                </com.google.android.material.textfield.TextInputLayout>
+                        android:layout_marginBottom="12dp"
+                        style="@style/Widget.ReciboP3.TextInputLayout"
+                        android:hint="@string/fecha_desde">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    style="@style/Widget.ReciboP3.TextInputLayout"
-                    android:hint="@string/fecha_hasta">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etFechaDesde"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:focusable="false"
+                            android:clickable="true"
+                            android:inputType="none" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etFechaHasta"
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:focusable="false"
-                        android:clickable="true"
-                        android:inputType="none" />
-                </com.google.android.material.textfield.TextInputLayout>
+                        android:layout_marginBottom="16dp"
+                        style="@style/Widget.ReciboP3.TextInputLayout"
+                        android:hint="@string/fecha_hasta">
 
-                <!-- Calendar View -->
-                <com.google.android.material.card.MaterialCardView
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etFechaHasta"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:focusable="false"
+                            android:clickable="true"
+                            android:inputType="none" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnBuscarRango"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Buscar por Rango"
+                        style="@style/Widget.ReciboP3.Button" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Section 2: Calendar Search -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Buscar Día Específico"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@color/secondary"
+                android:layout_marginBottom="12dp" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.ReciboP3.Card"
+                android:layout_marginBottom="16dp">
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    app:cardElevation="0dp"
-                    app:cardBackgroundColor="@color/surface_variant"
-                    app:cardCornerRadius="12dp">
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
                     <CalendarView
                         android:id="@+id/calendarView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
                         android:dateTextAppearance="@style/TextAppearance.ReciboP3.Body"
                         android:weekDayTextAppearance="@style/TextAppearance.ReciboP3.Caption" />
-                </com.google.android.material.card.MaterialCardView>
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnBuscar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/buscar"
-                    style="@style/Widget.ReciboP3.Button" />
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnBuscarDia"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Buscar en esta Fecha"
+                        style="@style/Widget.ReciboP3.Button"
+                        android:backgroundTint="@color/secondary" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:padding="8dp" />
-
-        <TextView
-            android:id="@+id/tvEmpty"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-            android:text="@string/recibos_vacio"
-            android:textAppearance="@style/TextAppearance.ReciboP3.Body"
-            android:textColor="@color/text_secondary"
-            android:gravity="center"
-            android:visibility="gone" />
-    </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
